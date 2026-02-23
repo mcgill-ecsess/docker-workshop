@@ -6,13 +6,13 @@ Write a `docker-compose.yml` that runs both **frontend** and **backend** on diff
 
 ## Project structure
 
-- `frontend/` — Vue/Vite app (port 3000)
-- `backend/` — Express API on Bun (port 8000)
+- `frontend/` — SvelteKit app (port 5173)
+- `backend/` — Express API on Bun (port 8080)
 - `database` — PostgreSQL with persistent volume
 
 ## Docker workshop hints
 
-- Use `ports` to expose services to the host (e.g. `"3000:80"` for frontend, `"8000:8000"` for backend)
+- Use `ports` to expose services to the host (e.g. `"5173:5173"` for frontend, `"8080:8080"` for backend)
 - Add a `database` service using the official `postgres` image
 - Use `volumes` to persist database data across container restarts
 - Use `depends_on` so backend starts after the database
@@ -28,6 +28,6 @@ docker compose up -d --build
 
 ## Expected result
 
-- **Frontend** at http://localhost:3000
-- **Backend** at http://localhost:8000
+- **Frontend** at http://localhost:5173
+- **Backend** at http://localhost:8080
 - **Database** (PostgreSQL) running with data persisted in a volume
