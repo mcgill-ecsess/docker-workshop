@@ -1,21 +1,11 @@
 services:
   frontend:
-    build: ./frontend
-    ports:
-      - "5173:5173"
-    depends_on:
-      - backend
+    # TODO: Build the frontend service
     networks:
       - webapp-network
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    ports:
-      - "8000:8080"
-    depends_on:
-      - database
+    # TODO: Build the backend service
     networks:
       - webapp-network
 
