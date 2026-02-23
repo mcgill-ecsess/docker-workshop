@@ -2,13 +2,37 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "3000:80"
+      - "5173:5173"
     depends_on:
       - backend
     networks:
       - webapp-network
 
   backend:
-    build: ./backend
-    expose:
-      - "8000"
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8080"
+    depends_on:
+      - database
+    networks:
+      - webapp-network
+
+  database:
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: app
+    networks:
+      - webapp-network
+
+networks:
+  webapp-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
